@@ -19,15 +19,16 @@ export async function apiRequest(path, options = {}) {
     headers,
   });
 
+  const text = await response.text();
+
   let data;
 
   try {
-    data = await response.json();
+    data = JSON.parse(text);
   } catch {
-    data = {
-      success: false,
-      message: "Invalid server response",
-    };
+    console.error("Server response:", text);
+
+    throw new Error(`Invalid server response (${response.status})`);
   }
 
   if (!response.ok) {
