@@ -23,7 +23,7 @@ function Payment({ amount, tournamentId }) {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/payments",
+  "https://custom-tournament-backend.onrender.com/api/payments",
         {
           method: "POST",
           headers: {
